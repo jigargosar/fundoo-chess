@@ -1,4 +1,9 @@
+require 'forwardable'
+
 class MoveValidator
+  extend Forwardable
+
+  def_delegators :@board, :location_empty?, :piece_at?
 
   def initialize board, src, dest
     @board = board
@@ -22,16 +27,8 @@ class MoveValidator
     @board.piece_at @dest
   end
 
-  def piece_at location
-    @board.piece_at location
-  end
-
-  def location_empty? location
-    @board.location_empty? location
-  end
-
   def is_destination_within_legal_movable_range_of_the_piece?
-    src_piece.move_legal?(@src, @dest)
+    src_piece.legal_move?(@src, @dest)
   end
 
   def is_path_to_destination_clear?
@@ -39,9 +36,4 @@ class MoveValidator
       location_empty?(next_location)
     end
   end
-
-  def can_piece_occupy_destination?
-    src_piece.can_occupy_location_with(dest_piece)
-  end
-
 end
