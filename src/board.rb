@@ -1,4 +1,4 @@
-require 'piece'
+require 'piece_factory'
 require 'move_validator'
 require 'location'
 
@@ -19,7 +19,7 @@ class Board
   def initialize
     @cells = Array.new(MAX_ROWS){|row|
       Array.new(MAX_COLS){|col|        
-        Piece.new(INITIAL_POSITION[row].split[col])
+        Piece::Factory.create(INITIAL_POSITION[row].split[col])
       }
     }
   end
@@ -55,7 +55,7 @@ class Board
   
   def move_piece src, dest    
     src_piece = piece_at src 
-    @cells[src.row][src.col] = Piece::EMPTY
+    @cells[src.row][src.col] = Piece::Empty
     @cells[dest.row][dest.col] = src_piece 
   end
 

@@ -9,4 +9,8 @@ class Location
   def inspect
     "row=#{@row}, col=#{@col}"
   end
+
+  def same_column? location
+    @col == location.col 
+  end
 end

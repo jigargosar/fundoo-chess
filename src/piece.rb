@@ -1,11 +1,11 @@
-class Piece  
+class Piece
   def initialize code
-    @color,@name = *(code.split /\B/)
+    @color, @name = *(code.split /\B/)
     @code = code
   end
 
   def inspect
-    [@color,@name]
+    [@color, @name]
   end
 
   def legal_move? src, dest
@@ -17,7 +17,7 @@ class Piece
   end
 
   def can_occupy_location_with piece
-    piece.nil? ? true : piece.color != @color 
+    piece.nil? ? true : piece.color != @color
   end
 
   def is_empty?
@@ -28,5 +28,6 @@ class Piece
     @color
   end
 
-  EMPTY = Piece.new("--")
+  Empty = Piece.new("--")
+  
 end
