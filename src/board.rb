@@ -26,7 +26,7 @@ class Board
 
   def move src, dest
     puts "Making move: #{src},#{dest}"
-    src_location, dest_location = Location.new(src), Location.new(dest)
+    src_location, dest_location = Location.algebraic(src), Location.algebraic(dest)
     if MoveValidator.new(self, src_location, dest_location).is_valid?
       move_piece src_location, dest_location
     end
@@ -44,7 +44,7 @@ class Board
   end
 
   def piece_at location
-    @cells[location.row][location.col]
+    @cells[location.array_row][location.array_col]
   end
 
   def location_empty? location    
@@ -53,10 +53,10 @@ class Board
   
   private
   
-  def move_piece src, dest    
-    src_piece = piece_at src 
-    @cells[src.row][src.col] = Piece::Empty
-    @cells[dest.row][dest.col] = src_piece 
+  def move_piece src, dest
+    src_piece = piece_at src
+    @cells[src.array_row][src.array_col] = Piece::Empty
+    @cells[dest.array_row][dest.array_col] = src_piece
   end
 
 end
