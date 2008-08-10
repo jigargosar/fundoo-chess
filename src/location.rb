@@ -46,6 +46,18 @@ class Location
     @row == row
   end
 
+  def straight_path_to dest
+    if same_column? dest
+      ((@row+1)...dest.row).map{|row| Location.new(row, @col)}
+    elsif same_row? dest
+      ((@col+1)...dest.col).map{|col| Location.new(@row, col)}
+    else
+      # todo: should throw some exception.
+      []
+    end
+  end
+  
+
   def inspect
     "row=#{@row}, col=#{@col}"
   end

@@ -12,10 +12,6 @@ class Piece
     true
   end
 
-  def path_clear? src, dest
-    true
-  end
-
   def can_occupy_location_with piece
     piece.nil? ? true : color_of(piece) != @color
   end
@@ -39,7 +35,6 @@ class Piece
     []
   end
   
-
   private
   
   def color_of piece

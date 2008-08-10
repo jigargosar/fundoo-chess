@@ -12,9 +12,10 @@ class MoveValidator
   end
 
   def is_valid?
+    # todo: will have to add more common validation, like src == dest and src,dest within bounds
     is_destination_within_legal_movable_range_of_the_piece? &&
             is_path_to_destination_clear? &&
-            src_piece.can_occupy_location_with(dest_piece)
+            src_piece.can_occupy_location_with(dest_piece)                                       
   end
 
   private

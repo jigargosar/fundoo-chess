@@ -15,3 +15,6 @@ board.draw
 
 board.move :a1, :a3
 board.draw
+
+board.move :a3, :f3
+board.draw
