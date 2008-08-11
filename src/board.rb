@@ -1,5 +1,5 @@
 require 'piece_factory'
-require 'move_validator'
+require 'move'
 require 'location'
 
 class Board
@@ -24,15 +24,14 @@ class Board
     }
   end
 
-  def move src, dest
-    puts "Making move: #{src},#{dest}"
-    src_location, dest_location = Location.algebraic(src), Location.algebraic(dest)    
-    if MoveValidator.new(self, src_location, dest_location).is_valid?
-      move_piece src_location, dest_location
+  def move algebraic_src, algebraic_dest
+    puts "Making move: #{algebraic_src},#{algebraic_dest}"
+    move = Move.new(self, algebraic_src, algebraic_dest)    
+    if move.is_valid?
+      move_piece move.src, move.dest
     end
   end
 
-  # todo: have to print algebriac notation around the board.
   def draw
     puts_column_names
     row_index = 8
@@ -49,7 +48,7 @@ class Board
     @cells[location.array_row][location.array_col]
   end
 
-  def location_empty? location    
+  def is_location_empty? location    
     piece_at(location).is_empty?
   end
   

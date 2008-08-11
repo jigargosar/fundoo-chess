@@ -20,6 +20,7 @@ board.move :a3, :f3
 board.draw
 
 board.move :h8, :h4
+#board.move_piece(:from=>:h8, :to=>:h4)
 board.draw
 
 while false
