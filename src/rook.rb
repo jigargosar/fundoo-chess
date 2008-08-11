@@ -5,7 +5,7 @@ class Rook < Piece
   Black = Rook.new("br")
 
   def legal_move? src, dest
-    src.same_column?(dest) || src.same_row?(dest)
+    src.is_same_column_as(dest) || src.is_same_row_as(dest)
   end
 
   def path src, dest    

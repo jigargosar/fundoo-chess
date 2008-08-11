@@ -10,8 +10,8 @@ class Pawn < Piece
       src = src.rotate_cordinate_space
       dest = dest.rotate_cordinate_space
     end
-    ( src.same_column?(dest) && dest.is_ahead_of(src, :by=>1) ) ||
-            ( src.same_column?(dest) && src.is_at_row?(2) && dest.is_ahead_of(src, :by=>2) )
+    ( src.is_same_column_as(dest) && dest.is_ahead_of(src, :by=>1) ) ||
+            ( src.is_same_column_as(dest) && src.is_at_row?(2) && dest.is_ahead_of(src, :by=>2) )
   end
 
   # todo: include logic of moving/killing in diagonal
