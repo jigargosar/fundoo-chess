@@ -47,10 +47,12 @@ class Location
   end
 
   def straight_path_to dest
-    if same_column? dest
-      ((@row+1)...dest.row).map{|row| Location.new(row, @col)}
+    if same_column? dest      
+      range = @row < dest.row ? ((@row+1)...dest.row) : ((dest.row+1)...(@row))
+      range.map{|row| Location.new(row, @col)}
     elsif same_row? dest
-      ((@col+1)...dest.col).map{|col| Location.new(@row, col)}
+      range = @col < dest.col ? ((@col+1)...dest.col) : ((dest.col+1)...(@col))
+      range.map{|col| Location.new(@row, col)}
     else
       # todo: should throw some exception?
       []

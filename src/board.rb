@@ -26,22 +26,23 @@ class Board
 
   def move src, dest
     puts "Making move: #{src},#{dest}"
-    src_location, dest_location = Location.algebraic(src), Location.algebraic(dest)
+    src_location, dest_location = Location.algebraic(src), Location.algebraic(dest)    
     if MoveValidator.new(self, src_location, dest_location).is_valid?
       move_piece src_location, dest_location
     end
   end
 
   # todo: have to print algebriac notation around the board.
-  def draw    
+  def draw
+    puts_column_names
+    row_index = 8
     @cells.each{|row|
-      print "["
-      row.each{|piece|
-        print piece.inspect, ","
-      }
-      print "]\n"
+      print "#{row_index}["
+      print row.map{|piece| piece.inspect.to_s}.join(",")
+      print "]#{row_index}\n"
+      row_index-=1      
     }
-    puts
+    puts_column_names
   end
 
   def piece_at location
@@ -53,6 +54,12 @@ class Board
   end
   
   private
+
+  def puts_column_names
+    print "  "
+    ('a'..'h').each{|c| print "#{c}  "}
+    puts
+  end
   
   def move_piece src, dest
     src_piece = piece_at src

@@ -8,7 +8,7 @@ class Rook < Piece
     src.same_column?(dest) || src.same_row?(dest)
   end
 
-  def path src, dest
+  def path src, dest    
     src.straight_path_to dest    
   end
 

@@ -24,14 +24,14 @@ class Piece
     @color == "b"
   end
 
-  def path_clear? src, dest
+  def path_clear? src, dest    
     path(src, dest).each do |next_location|
       return false unless yield next_location
     end
     return true
   end
 
-  def path src, dest
+  def path src, dest    
     []
   end
   
