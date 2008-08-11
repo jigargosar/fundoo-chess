@@ -52,7 +52,7 @@ class Location
     elsif same_row? dest
       ((@col+1)...dest.col).map{|col| Location.new(@row, col)}
     else
-      # todo: should throw some exception.
+      # todo: should throw some exception?
       []
     end
   end

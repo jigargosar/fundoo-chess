@@ -32,6 +32,7 @@ class Board
     end
   end
 
+  # todo: have to print algebriac notation around the board.
   def draw    
     @cells.each{|row|
       print "["
