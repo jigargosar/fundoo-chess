@@ -30,11 +30,11 @@ class Location
     8 - @row
   end
 
-  def conflicting_change? location
+  def is_same_column_as location
     @col == get_column_of(location)
   end
 
-  def same_row? location
+  def is_same_row_as location
     @row == get_row_of(location)
   end
 
@@ -47,10 +47,10 @@ class Location
   end
 
   def straight_path_to dest
-    if same_column? dest      
+    if is_same_column_as dest      
       range = @row < dest.row ? ((@row+1)...dest.row) : ((dest.row+1)...(@row))
       range.map{|row| Location.new(row, @col)}
-    elsif same_row? dest
+    elsif is_same_row_as dest
       range = @col < dest.col ? ((@col+1)...dest.col) : ((dest.col+1)...(@col))
       range.map{|col| Location.new(@row, col)}
     else
