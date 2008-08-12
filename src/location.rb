@@ -30,7 +30,7 @@ class Location
     8 - @row
   end
 
-  def same_column? location
+  def conflicting_change? location
     @col == get_column_of(location)
   end
 
